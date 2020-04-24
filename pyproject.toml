@@ -1,8 +1,10 @@
 [tool.poetry]
-name = "tingfeng-discord"
+name = "tfquotebot"
 version = "0.1.0"
 description = "Ting Feng Quotes Discord bot"
-authors = ["Your Name <you@example.com>"]
+authors = ["pognog69 <you@example.com>"]
+readme = "README.md"
+repository = "https://github.com/pognog69/tingfeng_discord"
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -10,8 +12,10 @@ requests = "^2.23.0"
 "discord.py" = "^1.3.3"
 python-dotenv = "^0.13.0"
 
-[tool.poetry.dev-dependencies]
-pytest = "^5.2"
+# [tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+tfquotebot = "tfquotebot:main"
 
 [build-system]
 requires = ["poetry>=0.12"]

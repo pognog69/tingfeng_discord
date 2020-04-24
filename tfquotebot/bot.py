@@ -9,26 +9,14 @@
 #
 #                                ...is still single!
 
-import os
 from random import randrange
-import typing
-import requests
+from typing import Optional
 import discord
-from dotenv import load_dotenv
-from discord.ext import commands
-
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
-
-# get the quotes
-QUOTES_URL = "https://raw.githubusercontent.com/pognog69/tingfeng-discord/master/quotes.txt"
-quotes = []
-for line in requests.get(QUOTES_URL, stream=True).iter_lines(decode_unicode=True):
-    if line: quotes.append(line)
-
+from discord.ext.commands import Bot
+from .vars import getQuotes
 
 # big boy initialization
-bot = commands.Bot(command_prefix='tf ')
+bot = Bot(command_prefix='tf ', activity=discord.Game(name='tf help'))
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} ID {bot.user.id} has connected to Discord!')
@@ -36,8 +24,9 @@ async def on_ready():
 
 # quote command
 @bot.command(name='quote', help='If a number is given (e.g. tf quote 69), displays that quote. Else, displays a random Ting Feng quote')
-async def random_quote(ctx, id: typing.Optional[int] = -1):
+async def random_quote(ctx, id: Optional[int] = -1):
 
+    quotes = getQuotes()
     if id < 1 or id > len(quotes):
         id = randrange(1, len(quotes)+1)
 
@@ -48,6 +37,3 @@ async def random_quote(ctx, id: typing.Optional[int] = -1):
     embed.set_footer(text='-Ting Feng')
 
     await ctx.send(embed=embed)
-
-
-bot.run(TOKEN)
