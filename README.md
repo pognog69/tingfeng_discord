@@ -4,7 +4,7 @@ Ting Feng Quotes Discord bot
 
 :b: :b: :b: Visit [our website](https://xn--137h.ga) for more information. :b: :b: :b:
 
-### Build(?) instructions
+### """Build""" instructions
 
 The bot does not function unless a `.env` [file](https://pypi.org/project/python-dotenv/) containing the line `DISCORD_TOKEN=ReplaceThisWithYourToken` exists in the same directory as the script with your application's token substituted for the value of `DISCORD_TOKEN`.
 
