@@ -1,5 +1,16 @@
+#      _______ _               ______
+#     |__   __(_)             |  ____|
+#        | |   _ _ __   __ _  | |__ ___ _ __   __ _
+#        | |  | | '_ \ / _` | |  __/ _ \ '_ \ / _` |
+#        | |  | | | | | (_| | | | |  __/ | | | (_| |
+#        |_|  |_|_| |_|\__, | |_|  \___|_| |_|\__, |
+#                       __/ |                  __/ |
+#                      |___/                  |___/
+#
+#                                ...is still single!
+
 import os
-import random
+from random import randrange
 import typing
 import requests
 import discord
@@ -20,7 +31,7 @@ for line in requests.get(QUOTES_URL, stream=True).iter_lines(decode_unicode=True
 bot = commands.Bot(command_prefix='tf ')
 @bot.event
 async def on_ready():
-    print(f'{bot.user.name} has connected to Discord!')
+    print(f'{bot.user.name} ID {bot.user.id} has connected to Discord!')
 
 
 # quote command
@@ -28,7 +39,7 @@ async def on_ready():
 async def random_quote(ctx, id: typing.Optional[int] = -1):
 
     if id < 1 or id > len(quotes):
-        id = random.randrange(1, len(quotes)+1)
+        id = randrange(1, len(quotes)+1)
 
     quote = quotes[id-1]
 
